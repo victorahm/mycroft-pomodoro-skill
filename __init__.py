@@ -48,9 +48,9 @@ def parse_to_datetime(duration, timeleft=False):
     timer_time = now + timedelta(hours=hours, minutes=minutes, seconds=seconds)
     time_left = timedelta(hours=hours, minutes=minutes, seconds=seconds)
     if timeleft:
-	return time_left
+	    return time_left
     else:
-	return timer_time
+	    return timer_time
 def get_time_human(time_left, tname="", timeleft=False):
     """ Turn into params into a string for status of timer
 
@@ -80,7 +80,7 @@ def get_time_human(time_left, tname="", timeleft=False):
         time_string = "second" if seconds == 1 else "seconds"
         speak_string += "{} {}".format(seconds, time_string)
     if days == 0 and hours == 0 and minutes == 0 and seconds == 0:
-	speak_string = "There is 0 seconds" if timeleft else "0 seconds"
+	    speak_string = "There is 0 seconds" if timeleft else "0 seconds"
     speak_string += "left on the {} timer".format(timer_name) if timeleft else ""
 
     return speak_string
@@ -107,7 +107,7 @@ class PomodoroSkill(MycroftSkill):
 		self.register_entity_file('workduration.entity') #work duration wild card format
 		self.register_entity_file('breakduration.entity') #break duration wild card format
 		stop_intent = IntentBuilder("StopMySkillIntent").require("StopPomodoroKeyword").build()
-    		self.register_intent(stop_intent, self.handle_stop)
+		self.register_intent(stop_intent, self.handle_stop)
 	def handle_start_intent (self, message):
 		self.cycles = 0 #cycle: after long_break_frequency
 		self.process_pomodoro_inputs(message) #assign new work and break durations if stated by user
